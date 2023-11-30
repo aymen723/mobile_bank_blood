@@ -12,17 +12,19 @@ const Tab = createMaterialBottomTabNavigator();
         <NavigationContainer>
 
    <Tab.Navigator
-      initialRouteName="Setting"
-      activeColor="#e91e63"
-      barStyle={{ backgroundColor: 'tomato' }}
+      initialRouteName="Service"
+      activeColor="white"
+      barStyle={{ backgroundColor: '#FF7F7F' }}
     >
-      <Tab.Screen
-        name="Setting"
-        component={Setting}
-      />
+      
          <Tab.Screen
         name="Service"
         component={service}
+      />
+
+      <Tab.Screen
+        name="Setting"
+        component={Setting}
       />
       
       </Tab.Navigator>

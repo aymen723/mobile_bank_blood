@@ -1,14 +1,14 @@
 import React from 'react'
 import { View,Text,SafeAreaView,StyleSheet } from 'react-native'
-import Signin from './pages/Login/Signin'
-import Home from './pages/menu/Home'
+
+import Loginlayout from './pages/Login/Loginlayout'
 
 
 
 export default function Applayout() {
   return (
 <SafeAreaView style={styles.container}>
-      <Home></Home>
+      <Loginlayout></Loginlayout>
 </SafeAreaView>
   )
 }

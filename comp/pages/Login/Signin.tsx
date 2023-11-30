@@ -1,9 +1,11 @@
 import React from 'react'
-import { View , StyleSheet,TextInput,Text ,TouchableOpacity} from 'react-native'
+import { View , ScrollView,StyleSheet,TextInput,Text ,TouchableOpacity} from 'react-native'
 
 export default function Signin() {
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.scroll}>
+
+<View style={styles.container}>
 
 <View style={styles.boxup}> 
 <View style={styles.title}>
@@ -47,6 +49,8 @@ export default function Signin() {
 </View>
 </View>
     </View>
+    </ScrollView>
+
   )
 }
 
@@ -56,10 +60,12 @@ const styles = StyleSheet.create({
     container : {
         flex:1
     },
-    boxup:{
-        flex:0.7
-        ,borderWidth:1,
+    scroll:{
+        borderWidth:1,
         borderColor:"black",
+    },
+    boxup:{
+        width:"100%",
         display:"flex",
         justifyContent:"flex-start",
         alignItems:"center"    },

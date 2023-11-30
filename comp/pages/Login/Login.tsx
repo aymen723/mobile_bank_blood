@@ -1,9 +1,19 @@
 import React from 'react'
 import { View ,Text ,StyleSheet, TouchableOpacity,Image, SafeAreaView} from 'react-native';
-import { Button } from '@rneui/themed';
-import {logo} from "../../../assets/logo.png";
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from './Loginlayout';
 
-export default function Login() {
+
+type ProfileScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'Loginchoice'
+>;
+
+type Props = {
+  navigation: ProfileScreenNavigationProp;
+};
+
+export default function Login({navigation}:Props) {
   return(
 
     <View style={styles.container}>
@@ -13,7 +23,10 @@ export default function Login() {
     </View>
     <View style={styles.box}>
       <View style={styles.boxbtn}>
-                  <TouchableOpacity  style={styles.btnin}><Text style={styles.textin}>Sign In</Text></TouchableOpacity>
+                  <TouchableOpacity onPress={()=>{
+                    navigation.push("Signin")
+
+                  }}  style={styles.btnin}><Text style={styles.textin}>Sign In</Text></TouchableOpacity>
       </View>
       <View style={styles.boxbtn}>
                   <TouchableOpacity  style={styles.btn}><Text style={styles.text}>Sign Up</Text></TouchableOpacity>
@@ -31,9 +44,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor:"#f2f2f2",
-      borderWidth:1,
-    borderColor:"black",
+    backgroundColor:"white",
+    //   borderWidth:1,
+    // borderColor:"black",
     
 
   },
