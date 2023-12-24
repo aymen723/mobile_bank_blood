@@ -22,6 +22,12 @@ export default function Login({navigation}:Props) {
    resizeMode={'center'} source={require("../../../assets/logo.png")} style={styles.logo} ></Image>
     </View>
     <View style={styles.box}>
+        <View style={styles.boxbtn}>
+                  <TouchableOpacity onPress={()=>{
+                    navigation.push("home")
+
+                  }}  style={styles.btnin}><Text style={styles.textin}>home</Text></TouchableOpacity>
+      </View>
       <View style={styles.boxbtn}>
                   <TouchableOpacity onPress={()=>{
                     navigation.push("Signin")
@@ -29,7 +35,10 @@ export default function Login({navigation}:Props) {
                   }}  style={styles.btnin}><Text style={styles.textin}>Sign In</Text></TouchableOpacity>
       </View>
       <View style={styles.boxbtn}>
-                  <TouchableOpacity  style={styles.btn}><Text style={styles.text}>Sign Up</Text></TouchableOpacity>
+                  <TouchableOpacity  style={styles.btn} onPress={()=>{
+                    navigation.push("Signup")
+
+                  }} ><Text style={styles.text}>Sign Up</Text></TouchableOpacity>
       </View>
 
     </View>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {View , Text, ScrollView, StyleSheet}from 'react-native'
+import {View , Text, ScrollView, TouchableOpacity,StyleSheet}from 'react-native'
 export default function Setting() {
   return (
    
@@ -8,6 +8,9 @@ export default function Setting() {
 <Text style={Styles.texttitle} >Settings</Text>
 </View>
     <ScrollView>
+      <TouchableOpacity style={Styles.boxbtn}>
+        <Text>test</Text>
+      </TouchableOpacity>
       
       
      
@@ -35,5 +38,15 @@ const Styles = StyleSheet.create({
   texttitle:{
     fontWeight:"bold",
     fontSize:20,
+  },
+  boxbtn:{
+    width:"100%",
+    height:50,
+    borderWidth:1,
+    borderColor:"black",
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center"
+
   }
 })

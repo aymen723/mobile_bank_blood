@@ -9,7 +9,6 @@ export default function Home() {
 const Tab = createMaterialBottomTabNavigator();
 
   return (
-        <NavigationContainer>
 
    <Tab.Navigator
       initialRouteName="Service"
@@ -28,7 +27,6 @@ const Tab = createMaterialBottomTabNavigator();
       />
       
       </Tab.Navigator>
-</NavigationContainer>
 
   )
 }
