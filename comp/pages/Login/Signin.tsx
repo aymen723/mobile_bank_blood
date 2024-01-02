@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
   View,
   ScrollView,
@@ -7,11 +8,36 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
+import SelectDropdown from "react-native-select-dropdown";
+
+interface province {
+  id: number;
+  number: number;
+  name: String;
+  districts: {
+    id: number;
+    provinceId: number;
+    name: String;
+  };
+}
 
 export default function Signin() {
   const [username, setusername] = useState<String | null>(null);
   const [email, setemail] = useState<String | null>(null);
   const [password, setpassword] = useState<String | null>(null);
+  const [Provinces, setProvinces] = useState([]);
+  const countries = ["Egypt", "Canada", "Australia", "Ireland"];
+
+  function getProvinces() {
+    axios.get("http://192.168.1.40:8080/api/general/provinces").then((e) => {
+      console.log(e.data);
+      setProvinces(e.data);
+    });
+  }
+
+  useEffect(() => {
+    getProvinces();
+  }, []);
 
   return (
     <ScrollView contentContainerStyle={styles.scroll}>
@@ -22,7 +48,7 @@ export default function Signin() {
           </View>
           <View style={styles.boxinp}>
             <View style={styles.placeholder}>
-              <Text>Username</Text>
+              <Text style={styles.placeholdertxt}>Username</Text>
             </View>
             <TextInput
               onChangeText={(e: String) => {
@@ -34,7 +60,7 @@ export default function Signin() {
           </View>
           <View style={styles.boxinp}>
             <View style={styles.placeholder}>
-              <Text>Email</Text>
+              <Text style={styles.placeholdertxt}>Email</Text>
             </View>
             <TextInput
               keyboardType="email-address"
@@ -47,7 +73,7 @@ export default function Signin() {
           </View>
           <View style={styles.boxinp}>
             <View style={styles.placeholder}>
-              <Text>Password</Text>
+              <Text style={styles.placeholdertxt}>Password</Text>
             </View>
             <TextInput
               secureTextEntry={true}
@@ -60,7 +86,7 @@ export default function Signin() {
           </View>
           <View style={styles.boxinp}>
             <View style={styles.placeholder}>
-              <Text>Confirm Password</Text>
+              <Text style={styles.placeholdertxt}>Confirm Password</Text>
             </View>
             <TextInput
               secureTextEntry={true}
@@ -70,7 +96,7 @@ export default function Signin() {
           </View>
           <View style={styles.boxinp}>
             <View style={styles.placeholder}>
-              <Text>Province</Text>
+              <Text style={styles.placeholdertxt}>Province</Text>
             </View>
             <TextInput
               onChangeText={(e: String) => {}}
@@ -78,7 +104,28 @@ export default function Signin() {
             ></TextInput>
           </View>
           <View style={styles.boxinp}>
-            <TouchableOpacity style={styles.btn}>
+            <View style={styles.placeholder}>
+              <Text style={styles.placeholdertxt}>BloodGroup</Text>
+            </View>
+            <SelectDropdown
+              data={countries}
+              onSelect={(selectedItem, index) => {
+                console.log(selectedItem, index);
+              }}
+              buttonTextAfterSelection={(selectedItem, index) => {
+                // text represented after item is selected
+                // if data array is an array of objects then return selectedItem.property to render after item is selected
+                return selectedItem;
+              }}
+              rowTextForSelection={(item, index) => {
+                // text represented for each item in dropdown
+                // if data array is an array of objects then return item.property to represent item in dropdown
+                return item;
+              }}
+            />
+          </View>
+          <View style={styles.boxinp}>
+            <TouchableOpacity onPress={getProvinces} style={styles.btn}>
               <Text style={{ color: "white", fontWeight: "bold" }}>
                 Sing In
               </Text>
@@ -146,6 +193,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     fontWeight: "bold",
+    // fontFamily: "OpenSans-Bold",
   },
   btn: {
     width: "85%",
@@ -167,6 +215,9 @@ const styles = StyleSheet.create({
   },
   titletxt: {
     fontSize: 25,
+    fontWeight: "bold",
+  },
+  placeholdertxt: {
     fontWeight: "bold",
   },
 });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,7 +7,40 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-export default function Signup() {
+import axios from "axios";
+import * as SecureStore from "expo-secure-store";
+import { RootStackParamList } from "./Loginlayout";
+import { StackNavigationProp } from "@react-navigation/stack";
+
+interface result {
+  role: String;
+  token: String;
+}
+type ProfileScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  "Loginchoice"
+>;
+
+type Props = {
+  navigation: ProfileScreenNavigationProp;
+};
+export default function Signup({ navigation }: Props) {
+  const [username, setusername] = useState<null | String>(null);
+  const [password, setpassword] = useState<null | String>(null);
+  const [res, setres] = useState<null | result>(null);
+
+  function login() {
+    let body = {
+      username: username,
+      password: password,
+    };
+    axios.post("http://192.168.1.40:8080/login", body).then(async (e) => {
+      console.log(e.data.role);
+      setres(e.data.role);
+      await SecureStore.setItemAsync("role", e.data.role);
+      navigation.push(e.data.role);
+    });
+  }
   return (
     // <ScrollView contentContainerStyle={styles.Scroll}>
     <View style={styles.container}>
@@ -19,18 +52,30 @@ export default function Signup() {
           <View style={styles.placeholder}>
             <Text>Username</Text>
           </View>
-          <TextInput style={styles.input}></TextInput>
+          <TextInput
+            onChangeText={(e: String) => {
+              setusername(e);
+            }}
+            keyboardType="email-address"
+            style={styles.input}
+          ></TextInput>
         </View>
         <View style={styles.boxinp}>
           <View style={styles.placeholder}>
-            <Text>Username</Text>
+            <Text>Password</Text>
           </View>
-          <TextInput style={styles.input}></TextInput>
+          <TextInput
+            onChangeText={(e: String) => {
+              setpassword(e);
+            }}
+            secureTextEntry={true}
+            style={styles.input}
+          ></TextInput>
         </View>
       </View>
       <View style={styles.boxdown}>
         <View style={styles.boxinp}>
-          <TouchableOpacity style={styles.btn}>
+          <TouchableOpacity onPress={login} style={styles.btn}>
             <Text style={{ color: "white", fontWeight: "bold" }}>Login</Text>
           </TouchableOpacity>
         </View>

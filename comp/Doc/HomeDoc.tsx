@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-export default function Service() {
+export default function HomeDoc() {
   return (
     <View>
-      <Text>RECEIVER</Text>
+      <Text>HomeDoc</Text>
     </View>
   );
 }
