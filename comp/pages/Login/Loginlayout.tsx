@@ -10,10 +10,8 @@ import HomeAdmin from "../../Admin/HomeAdmin";
 import Homereceiver from "../../Receiver/Homereceiver";
 import Homedonor from "../../Donor/Homedonor";
 import HomeDoc from "../../Doc/HomeDoc";
-
-// type AppActions = Increment | Random;
-// type Increment = { type: 'increment'; payload: number };
-// type Random = { type: 'random' };
+import { useSelector } from "react-redux";
+import type { RootState } from "../../Store/Store";
 
 export type RootStackParamList = {
   Loginchoice: undefined;
@@ -28,15 +26,16 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 export default function Loginlayout() {
-  const [userRole, setUserRole] = React.useState<String | null>(null);
+  // const [userRole, setUserRole] = React.useState<String | null>(null);
+  const userRole = useSelector((state: RootState) => state.role.userRole);
 
-  React.useEffect(() => {
-    SecureStore.getItemAsync("role").then((role) => {
-      setUserRole(role);
-      console.log(userRole);
-      console.log("testaaa°");
-    });
-  }, []);
+  // React.useEffect(() => {
+  //   SecureStore.getItemAsync("role").then((role) => {
+  //     setUserRole(role);
+  //     console.log(userRole);
+  //     console.log("testaaa°");
+  //   });
+  // }, []);
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -63,22 +62,3 @@ export default function Loginlayout() {
     </NavigationContainer>
   );
 }
-
-// function reducer(state : , action :AppActions) {
-//     const { type, payload } = action;
-//   switch (type) {
-//     case 'incremented_age': {
-//       return {
-//         name: state.name,
-//         age: state.age + 1
-//       };
-//     }
-//     case 'changed_name': {
-//       return {
-//         name: action.nextName,
-//         age: state.age
-//       };
-//     }
-//   }
-//   throw Error('Unknown action: ' + action.type);
-// }

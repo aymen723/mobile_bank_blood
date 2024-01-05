@@ -11,7 +11,9 @@ import axios from "axios";
 import * as SecureStore from "expo-secure-store";
 import { RootStackParamList } from "./Loginlayout";
 import { StackNavigationProp } from "@react-navigation/stack";
-
+import { useDispatch } from "react-redux";
+import { Saverole, Savetoken } from "../../Store/counterSlice";
+import type { AppDispatch } from "../../Store/Store";
 interface result {
   role: String;
   token: String;
@@ -29,15 +31,24 @@ export default function Signup({ navigation }: Props) {
   const [password, setpassword] = useState<null | String>(null);
   const [res, setres] = useState<null | result>(null);
 
+  const dispatch: AppDispatch = useDispatch();
+
+  const handleRoleChange = (newRole: string | null, token: string | null) => {
+    console.log("test here in redux");
+    dispatch(Saverole(newRole));
+    dispatch(Savetoken(token));
+  };
+
   function login() {
     let body = {
       username: username,
       password: password,
     };
-    axios.post("http://192.168.1.40:8080/login", body).then(async (e) => {
+    axios.post("http://192.168.1.38:8080/login", body).then(async (e) => {
       console.log(e.data.role);
-      setres(e.data.role);
-      await SecureStore.setItemAsync("role", e.data.role);
+      handleRoleChange(e.data.role, e.data.token);
+      setres(e.data);
+      await SecureStore.setItemAsync("login_object", JSON.stringify(e.data));
       navigation.push(e.data.role);
     });
   }
