@@ -13,6 +13,8 @@ import {
 import { useSelector } from "react-redux";
 import { RootState } from "../../Store/Store";
 import icon from ".iconprofile.png";
+import { RootStackParamList } from "../Layoutadmi";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 interface user {
   bloodGroup: string;
@@ -34,7 +36,16 @@ interface user {
   role: string;
 }
 
-export default function Listusers() {
+type ProfileScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  "HomeA"
+>;
+
+type Props = {
+  navigation: ProfileScreenNavigationProp;
+};
+
+export default function Listusers({ navigation }: Props) {
   const userRole = useSelector((state: RootState) => state.role.userRole);
   const token = useSelector((state: RootState) => state.role.token);
   const [users, setuser] = useState<[user] | null>(null);
@@ -75,7 +86,7 @@ export default function Listusers() {
               getusers("DONOR");
             }}
           >
-            <Text>DONOR</Text>
+            <Text style={{ color: "white", fontWeight: "bold" }}>DONOR</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={Styles.btnlist}
@@ -83,7 +94,7 @@ export default function Listusers() {
               getusers("RECEIVER");
             }}
           >
-            <Text>RECEIVER</Text>
+            <Text style={{ color: "white", fontWeight: "bold" }}>RECEIVER</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={Styles.btnlist}
@@ -91,12 +102,19 @@ export default function Listusers() {
               getusers("DOCTOR");
             }}
           >
-            <Text>DOCTOR</Text>
+            <Text style={{ color: "white", fontWeight: "bold" }}>DOCTOR</Text>
           </TouchableOpacity>
         </View>
         <View style={Styles.addbox}>
-          <TouchableOpacity style={Styles.btnadd} onPress={() => {}}>
-            <Text>Add Doctor</Text>
+          <TouchableOpacity
+            style={Styles.btnadd}
+            onPress={() => {
+              navigation.navigate("AddDoctor");
+            }}
+          >
+            <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
+              Add Doctor +
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -114,12 +132,38 @@ export default function Listusers() {
             <View style={Styles.itemlist}>
               <View style={[Styles.item, Styles.shadowProp]}>
                 <View style={Styles.info}>
-                  <Text>{item?.phoneNumber}</Text>
-                  <Text>{item.bloodGroup}</Text>
-                  <Text>{item.fullName}</Text>
-                  <Text>{item.email}</Text>
-                  <Text>{item.district.name}</Text>
-                  <Text>{item.role}</Text>
+                  <View style={Styles.infosplit}>
+                    <View style={Styles.placeholder}>
+                      <Text style={{ color: "grey" }}>Fullname :</Text>
+                      <Text style={{ fontWeight: "bold" }}>
+                        {item.fullName}
+                      </Text>
+                    </View>
+                    <View style={Styles.placeholder}>
+                      <Text style={{ color: "grey" }}>Email :</Text>
+                      <Text style={{ fontWeight: "bold" }}>{item.email}</Text>
+                    </View>
+                  </View>
+                  <View style={Styles.infosplit}>
+                    <View style={Styles.placeholder}>
+                      <Text style={{ color: "grey" }}>Blood Groupe :</Text>
+                      <Text style={{ fontWeight: "bold" }}>
+                        {item.bloodGroup}
+                      </Text>
+                    </View>
+                    <View style={Styles.placeholder}>
+                      <Text style={{ color: "grey" }}>district :</Text>
+                      <Text style={{ fontWeight: "bold" }}>
+                        {item.district.name}
+                      </Text>
+                    </View>
+                    <View style={Styles.placeholder}>
+                      <Text style={{ color: "grey" }}>Phone number :</Text>
+                      <Text style={{ fontWeight: "bold" }}>
+                        {item.phoneNumber}
+                      </Text>
+                    </View>
+                  </View>
                 </View>
                 <View style={Styles.profilepic}>
                   {item.profilePicUrl == null ? (
@@ -177,10 +221,9 @@ const Styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "flex-end",
+    paddingRight: 15,
   },
   btnlist: {
-    // borderWidth: 1,
-    // borderColor: "red",
     backgroundColor: "#68B684",
     width: "30%",
     height: 35,
@@ -190,11 +233,13 @@ const Styles = StyleSheet.create({
     borderRadius: 30,
   },
   btnadd: {
-    borderWidth: 1,
-    borderColor: "red",
-    width: 45,
-    height: 45,
+    backgroundColor: "#68B684",
+    width: 120,
+    height: 40,
     borderRadius: 50,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   listbox: {
     borderColor: "green",
@@ -225,25 +270,29 @@ const Styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: 5,
     },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
 
-    elevation: 3,
+    elevation: 10,
   },
   info: {
     width: "75%",
     height: "100%",
     borderColor: "red",
-    borderWidth: 1,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    // borderWidth: 1,
     borderRadius: 30,
   },
   profilepic: {
     width: "25%",
     height: "100%",
-    borderColor: "green",
-    borderWidth: 1,
+    // borderColor: "green",
+    // borderWidth: 1,
     borderRadius: 30,
     display: "flex",
     alignItems: "center",
@@ -252,5 +301,12 @@ const Styles = StyleSheet.create({
   icon: {
     width: "65%",
     height: "65%",
+  },
+  placeholder: {
+    // borderColor: "black",
+    // borderWidth: 1,
+  },
+  infosplit: {
+    width: "50%",
   },
 });

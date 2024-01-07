@@ -12,6 +12,7 @@ import Homedonor from "../../Donor/Homedonor";
 import HomeDoc from "../../Doc/HomeDoc";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../Store/Store";
+import Layoutadmi from "../../Admin/Layoutadmi";
 
 export type RootStackParamList = {
   Loginchoice: undefined;
@@ -52,7 +53,7 @@ export default function Loginlayout() {
         ) : userRole === "DONOR" ? (
           <Stack.Screen name="DONOR" options={{}} component={Homedonor} />
         ) : userRole === "ADMIN" ? (
-          <Stack.Screen name="ADMIN" options={{}} component={HomeAdmin} />
+          <Stack.Screen name="ADMIN" options={{}} component={Layoutadmi} />
         ) : userRole === "DOCTOR" ? (
           <Stack.Screen name="DOCTOR" options={{}} component={HomeDoc} />
         ) : (
