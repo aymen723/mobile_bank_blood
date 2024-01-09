@@ -47,14 +47,14 @@ export default function Signup({ navigation }: Props) {
     axios
       .post("http://192.168.1.36:8080/login", body)
       .then(async (e) => {
-        console.log(e.data.role);
+        console.log("here 1", e.data.role);
         handleRoleChange(e.data.role, e.data.token);
         setres(e.data);
         await SecureStore.setItemAsync("login_object", JSON.stringify(e.data));
         navigation.push(e.data.role);
       })
       .then((e) => {
-        console.error(e);
+        console.error("here 2", e);
       });
   }
   return (

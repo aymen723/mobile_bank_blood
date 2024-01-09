@@ -53,7 +53,7 @@ export default function Setting({ navigation }: Props) {
 
   function getprofile() {
     axios
-      .get("http://192.168.1.38:8080/api/user/profile", {
+      .get("http://192.168.1.36:8080/api/user/profile", {
         headers: {
           Authorization: token as string,
         },
@@ -120,7 +120,12 @@ export default function Setting({ navigation }: Props) {
           </Text>
         </View>
         <View style={Styles.boxarea}>
-          <TouchableOpacity style={Styles.btn}>
+          <TouchableOpacity
+            style={Styles.btn}
+            onPress={() => {
+              navigation.push("Loginchoice");
+            }}
+          >
             <View style={Styles.headerinfo}>
               <Text style={Styles.txt}>Sign Out</Text>
             </View>

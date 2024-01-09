@@ -62,7 +62,7 @@ export default function Listusers({ navigation }: Props) {
     console.log(userRole);
     console.log(token);
     axios
-      .get("http://192.168.43.89:8080/api/admin/accounts?role=" + role, {
+      .get("http://192.168.1.36:8080/api/admin/accounts?role=" + role, {
         headers: {
           Authorization: token as string,
         },
