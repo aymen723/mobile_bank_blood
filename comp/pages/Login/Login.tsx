@@ -28,6 +28,7 @@ export default function Login({ navigation }: Props) {
           source={require("../../../assets/logo.png")}
           style={styles.logo}
         ></Image>
+        <Text style={styles.title}>Life Nectar</Text>
       </View>
       <View style={styles.box}>
         {/* <View style={styles.boxbtn}>
@@ -76,14 +77,16 @@ const styles = StyleSheet.create({
   },
   boxup: {
     width: "100%",
-    height: "70%",
+    height: "60%",
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignItems: "center",
+    // borderWidth: 1,
+    // borderColor: "black",
   },
   box: {
     width: "100%",
-    height: "30%",
+    height: "35%",
     display: "flex",
     justifyContent: "space-evenly",
     alignItems: "center",
@@ -129,5 +132,12 @@ const styles = StyleSheet.create({
   logo: {
     width: 200,
     height: 200,
+  },
+  title: {
+    fontSize: 45,
+    fontWeight: "bold",
+    color: "#ef233c",
+    fontStyle: "italic",
+    letterSpacing: 7,
   },
 });

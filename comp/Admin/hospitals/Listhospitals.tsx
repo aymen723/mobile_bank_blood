@@ -40,7 +40,7 @@ export default function Listhospitals({ navigation }: Props) {
 
   function gethospitals() {
     axios
-      .get("http://192.168.1.38:8080/api/admin/hospitals", {
+      .get("http://192.168.43.89:8080/api/admin/hospitals", {
         headers: {
           Authorization: token as string,
         },

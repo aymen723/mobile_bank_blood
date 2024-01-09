@@ -134,8 +134,8 @@ export default function Setting({ navigation }: Props) {
 const Styles = StyleSheet.create({
   profilepic: {
     height: 200,
-    borderWidth: 1,
-    borderColor: "red",
+    // borderWidth: 1,
+    // borderColor: "red",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
