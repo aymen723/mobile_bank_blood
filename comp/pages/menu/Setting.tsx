@@ -53,7 +53,7 @@ export default function Setting({ navigation }: Props) {
 
   function getprofile() {
     axios
-      .get("http://192.168.1.36:8080/api/user/profile", {
+      .get("http://25.55.2.213:8080/api/user/profile", {
         headers: {
           Authorization: token as string,
         },
@@ -83,6 +83,13 @@ export default function Setting({ navigation }: Props) {
           <Text style={[Styles.txt, { fontSize: 18, color: "black" }]}>
             Personal Information
           </Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Alter");
+            }}
+          >
+            <Text>Modifier</Text>
+          </TouchableOpacity>
         </View>
         <View style={Styles.infoarea}>
           <TouchableOpacity style={Styles.btn}>
@@ -178,7 +185,9 @@ const Styles = StyleSheet.create({
     width: "85%",
     height: 50,
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
   },
   btn: {
     borderWidth: 0.75,

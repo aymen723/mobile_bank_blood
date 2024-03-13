@@ -1,10 +1,19 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 export default function Addhospital() {
   return (
-    <View>
-      <Text>Addhospital</Text>
+    <View style={Styles.container}>
+      <Text>Coming Soon</Text>
     </View>
   );
 }
+
+const Styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});

@@ -17,7 +17,6 @@ export default function LayoutDoc() {
       }}
     >
       <Stack.Screen name="HomeD" component={test} />
-      {/* <Stack.Screen name="HomeD" options={{}} component={HomeDoc} /> */}
     </Stack.Navigator>
   );
 }

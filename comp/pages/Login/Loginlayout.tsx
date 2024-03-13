@@ -13,6 +13,7 @@ import HomeDoc from "../../Doc/HomeDoc";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../Store/Store";
 import Layoutadmi from "../../Admin/Layoutadmi";
+import Alteruser from "../menu/Alteruser";
 
 export type RootStackParamList = {
   Loginchoice: undefined;
@@ -23,6 +24,7 @@ export type RootStackParamList = {
   DONOR: undefined;
   DOCTOR: undefined;
   Guest: undefined;
+  Alter: undefined;
 };
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -48,6 +50,7 @@ export default function Loginlayout() {
         <Stack.Screen name="Loginchoice" options={{}} component={Login} />
         <Stack.Screen name="Signin" options={{}} component={Signin} />
         <Stack.Screen name="Signup" options={{}} component={Signup} />
+        <Stack.Screen name="Alter" component={Alteruser} />
         {userRole === "RECEIVER" ? (
           <Stack.Screen name="RECEIVER" component={Homereceiver} />
         ) : userRole === "DONOR" ? (

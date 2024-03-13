@@ -50,7 +50,7 @@ export default function Listdonation() {
 
   function getdonation() {
     axios
-      .get("http://192.168.1.36:8080/api/donor/donations", {
+      .get("http://25.55.2.213:8080/api/donor/donations", {
         headers: {
           Authorization: token as string,
         },

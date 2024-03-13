@@ -13,7 +13,7 @@ import { color } from "@rneui/base";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "./Loginlayout";
 
-interface province {
+export interface province {
   id: number;
   number: number;
   name: string;
@@ -25,7 +25,7 @@ interface province {
     }
   ];
 }
-interface districts {
+export interface districts {
   id: number;
   provinceId: number;
   name: string;
@@ -90,7 +90,7 @@ export default function Signin({ navigation }: Props) {
   ];
 
   function getProvinces() {
-    axios.get("http://192.168.1.36:8080/api/general/provinces").then((e) => {
+    axios.get("http://25.55.2.213:8080/api/general/provinces").then((e) => {
       console.log(e.data);
       setProvinces(e.data);
     });
@@ -113,7 +113,7 @@ export default function Signin({ navigation }: Props) {
     console.log(user);
 
     axios
-      .post("http://192.168.1.36:8080/api/general/sign-up", user)
+      .post("http://25.55.2.213:8080/api/general/sign-up", user)
       .then((e) => {
         console.log(e.data);
         navigation.push("Signup");

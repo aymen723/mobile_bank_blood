@@ -45,7 +45,7 @@ export default function Signup({ navigation }: Props) {
       password: password,
     };
     axios
-      .post("http://192.168.1.36:8080/login", body)
+      .post("http://25.55.2.213:8080/login", body)
       .then(async (e) => {
         console.log("here 1", e.data.role);
         handleRoleChange(e.data.role, e.data.token);

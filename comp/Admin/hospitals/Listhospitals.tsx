@@ -14,7 +14,7 @@ import { RootState } from "../../Store/Store";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { RootStackParamList } from "../Layoutadmi";
 import { StackNavigationProp } from "@react-navigation/stack";
-interface hospital {
+export interface hospital {
   district: {
     id: number;
     name: string;
@@ -40,7 +40,7 @@ export default function Listhospitals({ navigation }: Props) {
 
   function gethospitals() {
     axios
-      .get("http://192.168.1.36:8080/api/admin/hospitals", {
+      .get("http://25.55.2.213:8080/api/admin/hospitals", {
         headers: {
           Authorization: token as string,
         },

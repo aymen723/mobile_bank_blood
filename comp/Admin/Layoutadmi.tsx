@@ -3,11 +3,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeAdmin from "./HomeAdmin";
 import Adddoctor from "./Accounts/Adddoctor";
 import Addhospital from "./hospitals/Addhospital";
+import Alteruser from "../pages/menu/Alteruser";
 
 export type RootStackParamList = {
   HomeA: undefined;
   AddDoctor: undefined;
   AddHospital: undefined;
+  Alter: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -30,6 +32,11 @@ export default function Layoutadmi() {
         name="AddHospital"
         options={{ headerShown: true }}
         component={Addhospital}
+      />
+      <Stack.Screen
+        name="Alter"
+        options={{ headerShown: true }}
+        component={Alteruser}
       />
     </Stack.Navigator>
   );
